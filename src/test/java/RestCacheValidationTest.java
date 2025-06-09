@@ -11,7 +11,7 @@ public class RestCacheValidationTest {
     public void test() {
         String baseUrl = "http://test01.p9m.net/";
 
-        // Send GET request
+        
         Response response = RestAssured
                 .given()
                 .when()
@@ -27,7 +27,7 @@ public class RestCacheValidationTest {
                 System.out.println(header.getName() + ": " + header.getValue())
         );
 
-        // === Validate TTL ===
+        //  Validate TTL 
         String cacheControl = response.getHeader("Cache-Control");
         if (cacheControl != null && cacheControl.contains("max-age")) {
             System.out.println("TTL (max-age) found: " + cacheControl);
@@ -35,7 +35,7 @@ public class RestCacheValidationTest {
             System.out.println("Cache-Control header with max-age not found.");
         }
 
-        // === Validate Cache Mode ===
+        // Validate Cache Mode 
 
         if (cacheControl != null) {
             if (cacheControl.contains("public")) {
@@ -48,7 +48,7 @@ public class RestCacheValidationTest {
                 System.out.println("Cache Mode not clearly defined.");
             }
         }
-         //=== CDN-Specific Cache Headers ===
+         
         String xCache = response.getHeader("X-Cache");
         String cfCache = response.getHeader("CF-Cache-Status");
         String via = response.getHeader("Via");
@@ -56,8 +56,8 @@ public class RestCacheValidationTest {
         if (xCache != null) {
             System.out.println("\nCDN X-Cache: " + xCache);
            assertThat("X-Cache should indicate HIT, MISS, or REFRESH",
-                    xCache.toLowerCase(), // Convert to lowercase for case-insensitive matching
-                    // CORRECTED LINE: Use Hamcrest's anyOf directly with containsString matchers
+                    xCache.toLowerCase(), 
+                    
                     anyOf(containsString("hit"), containsString("miss"), containsString("refresh")));
         } else {
             System.out.println("\nX-Cache header not present.");
@@ -71,7 +71,7 @@ public class RestCacheValidationTest {
             System.out.println("Via Header (proxy evidence): " + via);
         }
 
-        // === Surrogate / Purge Support Check ===
+
         String surrogateControl = response.getHeader("Surrogate-Control");
         if (surrogateControl != null) {
             System.out.println("Surrogate-Control: " + surrogateControl);
