@@ -50,8 +50,8 @@ public class BaseTest {
     // Utility Methods
 
     public void slowScrollToElement(WebElement element) {
-        int scrollStep = 100; // pixels per step
-        int scrollDelay = 200; // ms delay per scroll
+        int scrollStep = 100; 
+        int scrollDelay = 200; 
 
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
@@ -64,7 +64,7 @@ public class BaseTest {
                 Thread.currentThread().interrupt();
             }
 
-            // Optional: break if scrolled to bottom to avoid infinite loop
+          
             Long scrollY = (Long) js.executeScript("return window.scrollY;");
             Long scrollHeight = (Long) js.executeScript("return document.body.scrollHeight;");
             Long clientHeight = (Long) js.executeScript("return window.innerHeight;");
