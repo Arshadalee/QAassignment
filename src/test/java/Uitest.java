@@ -1,4 +1,4 @@
- // Don't forget your package
+ 
 
  import io.github.bonigarcia.wdm.WebDriverManager;
  import org.openqa.selenium.*;
@@ -20,16 +20,16 @@
 
     @BeforeTest
     public void init() {
-        // This will download the latest ChromeDriver if not present
+        
 
         setUp();
         test = extent.createTest("cache stratergy Test");
 
-         // Optional: Maximize window
+    
 
         driver.get("https://user.uat.asians.group/auth/realms/asians/protocol/openid-connect/auth?client_id=public&redirect_uri=https%3A%2F%2Fconsole.uat.asians.group%2F%23%2F&state=6c0b3cea-e876-40d2-8607-de42987c23d8&response_mode=fragment&response_type=code&scope=openid&nonce=9607f2b6-6179-400d-8e1b-f9761843b9e5");
 
-        System.out.println("WebDriver initialized and browser opened."); // For your own logging
+        System.out.println("WebDriver initialized and browser opened."); 
     }
 
     @Test(priority = 0)
@@ -82,10 +82,7 @@ WebElement domainscrollview=driver.findElement(By.xpath(domainView));
 
         String test01EditXpath="//h3[text()=\"test-1.cwcdn.com\"]/ancestor::div[@class='domain-list-item d-flex flex-column']//button[contains(text(),\"Edit\")]";
        WebElement test1= driver.findElement(By.xpath(test01EditXpath));
-      //  js.executeScript("arguments[0].scrollIntoView(true);", test1);
-       // actions.moveToElement(test1).perform();
-      //  slowScrollToElement(test1);
-       // isElementClickable(test1);
+     
         js.executeScript("arguments[0].scrollIntoView({block: 'center'});", test1);
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -151,6 +148,6 @@ WebElement domainscrollview=driver.findElement(By.xpath(domainView));
 
     @AfterTest
     public void cleanup() {
-//tearDown();
+tearDown();
     }
 }
